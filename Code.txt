@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+
+df_adv = pd.read_csv('petrol_consumption.csv')
+
+X = df_adv[['Petrol_tax', 'Average_income', 'Paved_Highways', 'Population_Driver_licence(%)']]
+y = df_adv['Petrol_Consumption']
+X = sm.add_constant(X)
+#Ordinary least squares regression
+est = sm.OLS(y, X).fit()
+print(est.summary())
+print(est.params)
+
